@@ -1,0 +1,59 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.tableContainer {
+  margin-top: 2rem;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.content {
+  flex: 1;
+  padding: 2rem;
+  margin-top: 3rem;
+  background-color: var(--cds-background);
+}
+
+.tilesGrid {
+  display: grid;
+  height: 100vh;
+  width: 80%;
+  max-width: 1200px; /* Optional: Set a max-width to control the grid's size */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  margin: 0 auto; /* Center the grid horizontally */
+  align-content: center;
+  justify-content: center;
+}
+
+.tile {
+  height: 200px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+}
+
+.tileContent {
+  padding: 1rem;
+}
+
+.tableContainer {
+  margin-top: 2rem;
+  background: var(--cds-layer);
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+.modalContent {
+  padding: 2rem;
+  text-align: center;
+}

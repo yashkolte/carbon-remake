@@ -1,0 +1,73 @@
+// styles/Home.module.scss
+
+@use '@carbon/styles/scss/spacing' as *;
+@use '@carbon/styles/scss/type' as *;
+@use '@carbon/styles/scss/breakpoint' as *;
+@use '@carbon/styles/scss/theme' as *;
+@use '@carbon/styles/scss/colors' as *;
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $spacing-06;
+  padding-top: $spacing-11;
+}
+
+.title {
+  @include type-style('heading-05');
+  margin-bottom: $spacing-07;
+  color: $text-primary;
+  border-bottom: 1px solid $gray-20;
+  padding-bottom: $spacing-05;
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: $spacing-06;
+  
+  @include breakpoint(sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @include breakpoint(md) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-07;
+  }
+  
+  @include breakpoint(lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  @include breakpoint(xlg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.loading, .error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  text-align: center;
+}
+
+.error {
+  color: $support-error;
+  font-weight: 600;
+  background-color: $layer-01; ;
+  padding: $spacing-05;
+  border-radius: 4px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-06;
+  
+  .filterControls {
+    display: flex;
+    gap: $spacing-03;
+  }
+}

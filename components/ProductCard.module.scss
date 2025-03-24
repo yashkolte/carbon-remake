@@ -1,0 +1,113 @@
+// src/components/ProductCard.module.scss
+
+@use '@carbon/styles/scss/spacing' as *;
+@use '@carbon/styles/scss/type' as *;
+@use '@carbon/styles/scss/theme' as *;
+@use '@carbon/styles/scss/colors' as *;
+
+.productCard {
+  height: 100%;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  // Use theme variables instead of hard-coded colors
+  border: 1px solid $border-subtle;
+  background-color: $layer-01;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  }
+  
+  &:focus {
+    outline: 2px solid $focus;
+    outline-offset: 2px;
+  }
+  
+  .imageContainer {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background-color: $layer-02;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background-color: $border-subtle;
+    }
+  }
+  
+  .thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+  
+  .content {
+    padding: $spacing-05;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  
+  .categoryTag {
+    margin-bottom: $spacing-03;
+  }
+  
+  .title {
+    @include type-style('heading-03');
+    color: $text-primary;
+    margin-bottom: $spacing-03;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 48px;
+  }
+  
+  .description {
+    @include type-style('body-01');
+    color: $text-secondary;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    margin-bottom: $spacing-05;
+    flex: 1;
+  }
+  
+  .priceContainer {
+    display: flex;
+    align-items: baseline;
+    margin-top: auto;
+    padding-top: $spacing-05;
+    border-top: 1px solid $border-subtle;
+    
+    .price {
+      @include type-style('heading-02');
+      color: $text-primary;
+      margin-right: $spacing-03;
+    }
+    
+    .discount {
+      @include type-style('body-01');
+      color: $support-success;
+      font-weight: 600;
+    }
+  }
+}

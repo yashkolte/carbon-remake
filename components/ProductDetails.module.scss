@@ -1,0 +1,131 @@
+// src/components/ProductDetails.module.scss
+
+@use '@carbon/styles/scss/spacing' as *;
+@use '@carbon/styles/scss/type' as *;
+@use '@carbon/styles/scss/theme' as *;
+@use '@carbon/styles/scss/breakpoint' as *;
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $spacing-06;
+}
+
+.breadcrumb {
+  margin-bottom: $spacing-06;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+}
+
+.error {
+  text-align: center;
+  padding: $spacing-09;
+  
+  h2 {
+    @include type-style('heading-03');
+    margin-bottom: $spacing-06;
+  }
+}
+
+.productDetail {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-07;
+  
+  @include breakpoint(md) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.productImages {
+  .mainImage {
+    width: 100%;
+    height: 400px;
+    object-fit: contain;
+    margin-bottom: $spacing-05;
+    background-color: $layer-01;
+  }
+  
+  .thumbnailsContainer {
+    display: flex;
+    gap: $spacing-03;
+    overflow-x: auto;
+    padding-bottom: $spacing-03;
+    
+    .thumbnail {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      cursor: pointer;
+      border: 2px solid transparent;
+      
+      &.active {
+        border-color: $focus;
+      }
+    }
+  }
+}
+
+.productInfo {
+  .category {
+    @include type-style('label-01');
+    color: $text-secondary;
+    margin-bottom: $spacing-03;
+  }
+  
+  .title {
+    @include type-style('heading-04');
+    margin-bottom: $spacing-05;
+  }
+  
+  .brand {
+    @include type-style('heading-01');
+    margin-bottom: $spacing-05;
+    color: $text-secondary;
+  }
+  
+  .description {
+    @include type-style('body-01');
+    margin-bottom: $spacing-06;
+  }
+  
+  .priceContainer {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: $spacing-05;
+    
+    .price {
+      @include type-style('heading-03');
+      margin-right: $spacing-03;
+    }
+    
+    .discount {
+      @include type-style('body-01');
+      color: $support-success;
+    }
+  }
+  
+  .details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-05;
+    margin-bottom: $spacing-06;
+    
+    .detailItem {
+      .label {
+        @include type-style('label-01');
+        color: $text-secondary;
+        margin-bottom: $spacing-02;
+      }
+      
+      .value {
+        @include type-style('body-01');
+      }
+    }
+  }
+}
