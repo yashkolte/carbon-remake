@@ -1,0 +1,84 @@
+@use '@carbon/react/scss/spacing';
+@use '@carbon/react/scss/type';
+@use '@carbon/react/scss/colors';
+
+
+
+.mainPage {
+    min-height: 100vh;
+//   flex: 1;
+  padding-top: spacing.$spacing-10;
+  background-color: colors.$gray-10;
+  
+  [data-carbon-theme="g100"] & {
+    background-color: colors.$gray-100;
+  }
+}
+
+.mainGrid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // height: 80vh;
+
+}
+
+.inputColButton {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    gap: 1rem;
+    // margin-top: spacing.$spacing-05;
+}
+
+
+.loginTile {
+    border-radius: spacing.$spacing-02;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    min-width: 800px;
+    margin: 0 auto;
+
+    background-color: colors.$gray-10;
+
+    [data-carbon-theme="g100"] & {
+        background-color: colors.$black;
+    }
+}
+
+.headerWrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: spacing.$spacing-05;
+}
+
+.loginIcon {
+  margin-right: spacing.$spacing-03;
+}
+
+.title {
+  @include type.type-style('heading-04');
+  color: colors.$gray-100;
+  margin: 0;
+  
+  [data-carbon-theme="g100"] & {
+    color: colors.$gray-10;
+  }
+}
+
+// .inputWrapper {
+//     display: flex;
+// }
+
+.signupWrapper {
+  margin-top: spacing.$spacing-05;
+  text-align: center;
+  
+  p {
+    @include type.type-style('body-01');
+    color: colors.$gray-70;
+    
+    [data-carbon-theme="g100"] & {
+      color: colors.$gray-30;
+    }
+  }
+}

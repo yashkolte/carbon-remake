@@ -39,7 +39,7 @@ export default function DashboardPage() {
       title: 'Documents',
       description: 'Manage your documents',
       icon: Document,
-      action: () => setIsModalOpen(true),
+      action: () => router.push('/shared'),
     },
     {
       title: 'Overview',

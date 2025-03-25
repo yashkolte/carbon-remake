@@ -7,7 +7,7 @@ import {
     Button,
     Column,
     Row,
-    TextInput,
+    
     InlineLoading,
     Link,
     PasswordInput,
@@ -15,6 +15,7 @@ import {
     Stack,
     FlexGrid,
 } from '@carbon/react';
+import TextInput  from '@/components/shared/TextInput';
 import { Login } from '@carbon/icons-react';
 import styles from './LoginForm.module.scss';
 import { useTheme } from '@/contexts/ThemeContext';
