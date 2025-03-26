@@ -12,7 +12,7 @@ import { Value } from 'sass';
 const page = () => {
     const [inputValue1, setInputValue1] = useState('');
     const [inputValue2, setInputValue2] = useState('');
-    const [selectedDropdownItem, setSelectedDropdownItem] = useState('');
+const [selectedDropdownItem, setSelectedDropdownItem] = useState<{id: string, text: string, value: string} | null>(null);
 
     const handleChange1 = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue1(e.target.value);
@@ -58,6 +58,7 @@ const page = () => {
         { id: '2', name: 'Jane Smith', age: 32, status: 'Inactive' },
         { id: '3', name: 'Bob Johnson', age: 45, status: 'Active' },
     ];
+    
 
 
     return (
@@ -99,6 +100,7 @@ const page = () => {
                                         <Dropdown
                                             id="dropdown-example"
                                             items={dropdownItems}
+                                            selectedItem={selectedDropdownItem}
                                             onChange={handleDropdownChange}
                                             placeholder="Select an option"
                                             titleText="Select from options"

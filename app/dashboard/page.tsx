@@ -39,7 +39,7 @@ export default function DashboardPage() {
       title: 'Documents',
       description: 'Manage your documents',
       icon: Document,
-      action: () => router.push('/shared'),
+      action: () => router.push('/dashboard/document'),
     },
     {
       title: 'Overview',
@@ -74,8 +74,6 @@ export default function DashboardPage() {
           </ClickableTile>
         ))}
       </div>
-
-   
 
       <Modal
         open={isModalOpen}
