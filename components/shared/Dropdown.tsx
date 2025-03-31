@@ -62,13 +62,12 @@ const Dropdown: React.FC<DropdownProps> = ({
         id={id}
         titleText={titleText}
         helperText={helperText}
-        label={label || placeholder}
+        label={label ?? placeholder}
         items={items}
         selectedItem={selectedItem}
         onChange={({ selectedItem }) => onChange(selectedItem as DropdownOption)}
         disabled={disabled}
         size={size}
-        light={light}
         invalid={invalid}
         invalidText={invalidText}
         warn={warn}

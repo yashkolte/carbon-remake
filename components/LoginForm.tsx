@@ -7,7 +7,6 @@ import {
     Button,
     Column,
     Row,
-    
     InlineLoading,
     Link,
     PasswordInput,
@@ -15,33 +14,35 @@ import {
     Stack,
     FlexGrid,
 } from '@carbon/react';
-import TextInput  from '@/components/shared/TextInput';
+import TextInput from '@/components/shared/TextInput';
 import { Login } from '@carbon/icons-react';
 import styles from './LoginForm.module.scss';
 import { useTheme } from '@/contexts/ThemeContext';
+import { useTranslation } from 'react-i18next';
 
 interface LoginValues {
     email: string;
     password: string;
 }
 
-const validationSchema = Yup.object().shape({
-    email: Yup.string()
-        .email('Invalid email address')
-        .required('Email is required'),
-    password: Yup.string()
-        .min(8, 'Password must be at least 8 characters')
-        .required('Password is required'),
-});
-
 const LoginPage: React.FC = () => {
     const router = useRouter();
     const { theme } = useTheme();
+    const { t } = useTranslation('common');
 
     const initialValues: LoginValues = {
         email: '',
         password: '',
     };
+
+    const validationSchema = Yup.object().shape({
+        email: Yup.string()
+            .email(t('login.validation.invalidEmail'))
+            .required(t('login.validation.emailRequired')),
+        password: Yup.string()
+            .min(8, t('login.validation.passwordMinLength'))
+            .required(t('login.validation.passwordRequired')),
+    });
 
     const handleSubmit = async (
         values: LoginValues,
@@ -50,10 +51,8 @@ const LoginPage: React.FC = () => {
         try {
             // TODO: Replace with your actual authentication logic
             console.log('Login attempt with:', values);
-
             // Simulate API call
             await new Promise(resolve => setTimeout(resolve, 1500));
-
             // On successful login, redirect to dashboard
             router.push('/dashboard')
         } catch (error) {
@@ -81,9 +80,8 @@ const LoginPage: React.FC = () => {
                             <Stack gap={7}>
                                 <div className={styles.headerWrapper}>
                                     <Login className={styles.loginIcon} />
-                                    <h1 className={styles.title}>Sign in</h1>
+                                    <h1 className={styles.title}>{t('login.signIn')}</h1>
                                 </div>
-
                                 <Formik
                                     initialValues={initialValues}
                                     validationSchema={validationSchema}
@@ -96,31 +94,28 @@ const LoginPage: React.FC = () => {
                                                     id="email"
                                                     name="email"
                                                     type="email"
-                                                    labelText="Email"
-                                                    placeholder="Enter your email"
+                                                    labelText={t('login.email')}
+                                                    placeholder={t('login.emailPlaceholder')}
                                                     value={values.email}
                                                     onChange={handleChange}
                                                     onBlur={handleBlur}
                                                     invalid={touched.email && !!errors.email}
                                                     invalidText={touched.email ? errors.email : ''}
                                                 />
-
                                                 <PasswordInput
                                                     id="password"
                                                     name="password"
-                                                    labelText="Password"
-                                                    placeholder="Enter your password"
+                                                    labelText={t('login.password')}
+                                                    placeholder={t('login.passwordPlaceholder')}
                                                     value={values.password}
                                                     onChange={handleChange}
                                                     onBlur={handleBlur}
                                                     invalid={touched.password && !!errors.password}
                                                     invalidText={touched.password ? errors.password : ''}
                                                 />
-
                                                 <div className={styles.forgotPasswordWrapper}>
-                                                    <Link href="/forgot-password">Forgot password?</Link>
+                                                    <Link href="/forgot-password">{t('login.forgotPassword')}</Link>
                                                 </div>
-
                                                 <Button
                                                     type="submit"
                                                     disabled={isSubmitting}
@@ -128,17 +123,16 @@ const LoginPage: React.FC = () => {
                                                 >
                                                     {isSubmitting ? (
                                                         <>
-                                                            <InlineLoading description="Signing in..." />
+                                                            <InlineLoading description={t('login.signingIn')} />
                                                         </>
                                                     ) : (
-                                                        'Sign in'
+                                                        t('login.signIn')
                                                     )}
                                                 </Button>
-
                                                 <div className={styles.signupWrapper}>
                                                     <p>
-                                                        Don&apos;t have an account?{' '}
-                                                        <Link href="/register">Create an account</Link>
+                                                        {t('login.dontHaveAccount')}{' '}
+                                                        <Link href="/register">{t('login.createAccount')}</Link>
                                                     </p>
                                                 </div>
                                             </Stack>
@@ -154,5 +148,4 @@ const LoginPage: React.FC = () => {
         </div>
     );
 };
-
 export default LoginPage;

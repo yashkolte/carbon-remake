@@ -1,9 +1,10 @@
-
 import React from 'react';
 import type { Metadata } from "next";
 import "./globals.scss";
 import Header from "@/components/Header";
 import { ThemeProvider } from "@/contexts/ThemeContext";
+import ReduxProvider from '@/components/providers/ReduxProvider';
+import I18nProvider from '@/components/providers/I18nProvider';
 
 export const metadata: Metadata = {
   title: "IBM IntelliSphere® Optim™",
@@ -22,10 +23,14 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children }) => (
     </head>
     <body suppressHydrationWarning suppressContentEditableWarning>
       <ThemeProvider>
-        <Header />
-        <main className="app-content">
-          {children}
-        </main>
+        <ReduxProvider>
+          <I18nProvider>
+            <Header />
+            <main className="app-content">
+              {children}
+            </main>
+          </I18nProvider>
+        </ReduxProvider>
       </ThemeProvider>
     </body>
   </html>

@@ -1,0 +1,28 @@
+.formContainer {
+    padding: 16px;
+    margin-top: 10vh;
+  }
+  
+  .column {
+    margin-bottom: 16px;
+  }
+  
+  .fileInputContainer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .hiddenFileInput {
+    display: none;
+  }
+  
+  .browseButton {
+    margin-left: 8px;
+    margin-top: 24px;
+  }
+  
+  .submitBtn {
+    margin-top: 24px;
+  }
+  

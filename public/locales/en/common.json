@@ -1,0 +1,90 @@
+{
+  "header": {
+    "dashboard": "Dashboard",
+    "archive": "Archive",
+    "documents": "Documents",
+    "notifications": "Notifications",
+    "settings": "Settings",
+    "user": "User",
+    "theme": {
+      "toggleLight": "Switch to light mode",
+      "toggleDark": "Switch to dark mode"
+    },
+    "language": {
+      "select": "Select language",
+      "en": "English",
+      "fr": "French",
+      "de": "German",
+      "es": "Spanish"
+    }
+  },
+  "login": {
+    "signIn": "Sign in",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "forgotPassword": "Forgot password?",
+    "dontHaveAccount": "Don't have an account?",
+    "createAccount": "Create an account",
+    "signingIn": "Signing in...",
+    "validation": {
+      "invalidEmail": "Invalid email address",
+      "emailRequired": "Email is required",
+      "passwordRequired": "Password is required",
+      "passwordMinLength": "Password must be at least 8 characters"
+    }
+  },
+  "dashboard": {
+    "overview": "Dashboard Overview",
+    "tiles": {
+      "archiveData": {
+        "title": "Archive Data",
+        "description": "View and manage archived records"
+      },
+      "products": {
+        "title": "Products",
+        "description": "View Products"
+      },
+      "documents": {
+        "title": "Documents",
+        "description": "Manage your documents"
+      },
+      "overview": {
+        "title": "Overview",
+        "description": "System overview and status"
+      }
+    },
+    "modal": {
+      "comingSoon": "Feature Coming Soon",
+      "underDevelopment": "This feature is currently under development.",
+      "close": "Close"
+    }
+  },
+  "products": {
+    "title": "Products",
+    "loading": "Loading products...",
+    "error": "Failed to load products",
+    "filters": {
+      "all": "All",
+      "featured": "Featured",
+      "onSale": "On Sale"
+    },
+    "pageTitle": "Products | Carbon Store",
+    "card": {
+      "discount": "{{percentage}}% off",
+      "price": "${{amount}}"
+    },
+    "details": {
+      "title": "Product Details",
+      "brand": "Brand",
+      "category": "Category",
+      "rating": "Rating",
+      "price": "Price",
+      "discount": "Discount",
+      "description": "Description",
+      "addToCart": "Add to Cart",
+      "backToProducts": "Back to Products"
+    }
+  }
+}

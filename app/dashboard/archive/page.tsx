@@ -1,17 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import {
-  DataTable,
-  Table,
-  TableHead,
-  TableRow,
-  TableHeader,
-  TableBody,
-  TableCell,
-  Modal,
-  Button,
-} from '@carbon/react';
+import { Modal } from '@carbon/react';
 import styles from '../dashboard.module.scss';
 import CustomDataTable from '@/components/CustomDataTable';
 
@@ -39,12 +29,7 @@ const rows = [
 
 export default function ArchivePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedRow, setSelectedRow] = useState<any>(null);
-
-  const handleRowClick = (row: any) => {
-    setSelectedRow(row);
-    setIsModalOpen(true);
-  };
+  const [selectedRow] = useState<any>(null);
 
   return (
     <div className={styles.tableContainer}>

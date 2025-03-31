@@ -7,7 +7,6 @@ import {
   Modal,
   ClickableTile,
   AspectRatio,
-
 } from '@carbon/react';
 import { useRouter } from 'next/navigation';
 import {
@@ -17,35 +16,38 @@ import {
   ChartColumn,
 } from '@carbon/icons-react';
 import styles from './dashboard.module.scss';
+import { useTranslation } from 'react-i18next';
 
 export default function DashboardPage() {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { t } = useTranslation('common');
 
   const tiles = [
     {
-      title: 'Archive Data',
-      description: 'View and manage archived records',
+      title: t('dashboard.tiles.archiveData.title'),
+      description: t('dashboard.tiles.archiveData.description'),
       icon: Archive,
       action: () => router.push('/dashboard/archive'),
     },
     {
-      title: 'Products',
-      description: 'View Products',
+      title: t('dashboard.tiles.products.title'),
+      description: t('dashboard.tiles.products.description'),
       icon: ChartColumn,
       action: () => router.push('/product'),
     },
     {
-      title: 'Documents',
-      description: 'Manage your documents',
+      title: t('dashboard.tiles.documents.title'),
+      description: t('dashboard.tiles.documents.description'),
       icon: Document,
       action: () => router.push('/dashboard/document'),
     },
     {
-      title: 'Overview',
-      description: 'System overview and status',
+      title: t('dashboard.tiles.overview.title'),
+      description: t('dashboard.tiles.overview.description'),
       icon: Dashboard,
-      action: () => setIsModalOpen(true),
+      action: () => router.push('/dashboard/submitform'),
+      // action: () => setIsModalOpen(true),
     },
   ];
 
@@ -53,7 +55,7 @@ export default function DashboardPage() {
     <div>
       <Grid>
         <Column lg={16} md={8} sm={4}>
-          <h1 className="cds--type-productive-heading-05">Dashboard Overview</h1>
+          <h1 className="cds--type-productive-heading-05">{t('dashboard.overview')}</h1>
         </Column>
       </Grid>
 
@@ -77,13 +79,13 @@ export default function DashboardPage() {
 
       <Modal
         open={isModalOpen}
-        modalHeading="Feature Coming Soon"
-        primaryButtonText="Close"
+        modalHeading={t('dashboard.modal.comingSoon')}
+        primaryButtonText={t('dashboard.modal.close')}
         onRequestClose={() => setIsModalOpen(false)}
         onRequestSubmit={() => setIsModalOpen(false)}
       >
         <div className={styles.modalContent}>
-          <p>This feature is currently under development.</p>
+          <p>{t('dashboard.modal.underDevelopment')}</p>
         </div>
       </Modal>
     </div>

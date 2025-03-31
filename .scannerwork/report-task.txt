@@ -1,6 +1,6 @@
-projectKey=Test
+projectKey=Carbon-Remake
 serverUrl=http://localhost:9000
 serverVersion=25.3.0.104237
-dashboardUrl=http://localhost:9000/dashboard?id=Test
-ceTaskId=2bf75901-d442-4660-ba55-e1825d8684fc
-ceTaskUrl=http://localhost:9000/api/ce/task?id=2bf75901-d442-4660-ba55-e1825d8684fc
+dashboardUrl=http://localhost:9000/dashboard?id=Carbon-Remake
+ceTaskId=cefd9838-7a61-41c8-851e-37da89547bcd
+ceTaskUrl=http://localhost:9000/api/ce/task?id=cefd9838-7a61-41c8-851e-37da89547bcd

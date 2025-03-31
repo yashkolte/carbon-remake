@@ -1,0 +1,90 @@
+{
+  "header": {
+    "dashboard": "Panel de control",
+    "archive": "Archivo",
+    "documents": "Documentos",
+    "notifications": "Notificaciones",
+    "settings": "Configuración",
+    "user": "Usuario",
+    "theme": {
+      "toggleLight": "Cambiar a modo claro",
+      "toggleDark": "Cambiar a modo oscuro"
+    },
+    "language": {
+      "select": "Seleccionar idioma",
+      "en": "Inglés",
+      "fr": "Francés",
+      "de": "Alemán",
+      "es": "Español"
+    }
+  },
+  "login": {
+    "signIn": "Iniciar sesión",
+    "email": "Correo electrónico",
+    "emailPlaceholder": "Ingrese su correo electrónico",
+    "password": "Contraseña",
+    "passwordPlaceholder": "Ingrese su contraseña",
+    "forgotPassword": "¿Olvidó su contraseña?",
+    "dontHaveAccount": "¿No tiene una cuenta?",
+    "createAccount": "Crear una cuenta",
+    "signingIn": "Iniciando sesión...",
+    "validation": {
+      "invalidEmail": "Dirección de correo electrónico inválida",
+      "emailRequired": "El correo electrónico es obligatorio",
+      "passwordRequired": "La contraseña es obligatoria",
+      "passwordMinLength": "La contraseña debe tener al menos 8 caracteres"
+    }
+  },
+  "dashboard": {
+    "overview": "Resumen del panel de control",
+    "tiles": {
+      "archiveData": {
+        "title": "Datos de archivo",
+        "description": "Ver y gestionar registros archivados"
+      },
+      "products": {
+        "title": "Productos",
+        "description": "Ver productos"
+      },
+      "documents": {
+        "title": "Documentos",
+        "description": "Gestionar sus documentos"
+      },
+      "overview": {
+        "title": "Resumen",
+        "description": "Resumen y estado del sistema"
+      }
+    },
+    "modal": {
+      "comingSoon": "Función próximamente",
+      "underDevelopment": "Esta función está actualmente en desarrollo.",
+      "close": "Cerrar"
+    }
+  },
+  "products": {
+    "title": "Productos",
+    "loading": "Cargando productos...",
+    "error": "Error al cargar los productos",
+    "filters": {
+      "all": "Todos",
+      "featured": "Destacados",
+      "onSale": "En oferta"
+    },
+    "pageTitle": "Productos | Carbon Store",
+    "card": {
+      "discount": "{{percentage}}% de descuento",
+      "price": "{{amount}}€"
+    },
+    "details": {
+      "title": "Detalles del producto",
+      "brand": "Marca",
+      "category": "Categoría",
+      "rating": "Valoración",
+      "price": "Precio",
+      "discount": "Descuento",
+      "description": "Descripción",
+      "addToCart": "Añadir al carrito",
+      "backToProducts": "Volver a productos"
+    }
+  }
+}

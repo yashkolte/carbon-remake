@@ -1,16 +1,17 @@
 // src/components/ProductDetails.tsx
 
 import { FC, useState, useEffect } from 'react';
-import { 
-  Breadcrumb, 
-  BreadcrumbItem, 
+import {
+  Breadcrumb,
+  BreadcrumbItem,
   Button,
-  Loading, 
-  Tag 
+  Loading,
+  Tag
 } from '@carbon/react';
 import { ArrowLeft } from '@carbon/icons-react';
 import styles from './ProductDetails.module.scss';
 import { useRouter } from 'next/navigation';
+import { useTranslation } from 'react-i18next';
 
 interface Product {
   id: number;
@@ -32,124 +33,142 @@ interface ProductDetailsProps {
 
 const ProductDetails: FC<ProductDetailsProps> = ({ productId }) => {
   const router = useRouter();
+  const { t } = useTranslation('common');
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedImage, setSelectedImage] = useState<string>('');
-  
+
   useEffect(() => {
     const fetchProduct = async () => {
       try {
         setLoading(true);
         const response = await fetch(`https://dummyjson.com/products/${productId}`);
-        
+
         if (!response.ok) {
           throw new Error(`Error: ${response.status}`);
         }
-        
+
         const data: Product = await response.json();
         setProduct(data);
         setSelectedImage(data.thumbnail);
         setError(null);
       } catch (err) {
-        setError('Failed to fetch product details');
+        setError(t('products.error'));
         console.error(err);
       } finally {
         setLoading(false);
       }
     };
-    
+
     if (productId) {
       fetchProduct();
     }
-  }, [productId]);
-  
+  }, [productId, t]);
+
   const handleBackClick = () => {
-    router.push('/');
+    router.push('/product');
   };
-  
+
   if (loading) {
     return (
       <div className={styles.loading}>
-        <Loading description="Loading product details..." withOverlay={false} />
+        <Loading description={t('products.loading')} withOverlay={false} />
       </div>
     );
   }
-  
+
   if (error || !product) {
     return (
       <div className={styles.error}>
-        <h2>{error || 'Product not found'}</h2>
+        <h2>{error || t('products.error')}</h2>
         <Button
           kind="tertiary"
           renderIcon={ArrowLeft}
           onClick={handleBackClick}
         >
-          Back to Products
+          {t('products.details.backToProducts')}
         </Button>
       </div>
     );
   }
-  
+
   return (
     <div className={styles.container}>
       <div className={styles.breadcrumb}>
         <Breadcrumb>
-          <BreadcrumbItem href="/">Home</BreadcrumbItem>
+          <BreadcrumbItem href="/product">{t('products.title')}</BreadcrumbItem>
           <BreadcrumbItem isCurrentPage>{product.title}</BreadcrumbItem>
         </Breadcrumb>
       </div>
-      
+
       <div className={styles.productDetail}>
         <div className={styles.productImages}>
-          <img 
-            src={selectedImage} 
-            alt={product.title} 
-            className={styles.mainImage} 
+          <img
+            src={selectedImage}
+            alt={product.title}
+            className={styles.mainImage}
           />
-          
+
           <div className={styles.thumbnailsContainer}>
             {[product.thumbnail, ...product.images].map((image, index) => (
-              <img 
+              <img
                 key={index}
-                src={image} 
-                alt={`${product.title} - Image ${index + 1}`} 
+                src={image}
+                alt={`${product.title} - Image ${index + 1}`}
                 className={`${styles.thumbnail} ${selectedImage === image ? styles.active : ''}`}
                 onClick={() => setSelectedImage(image)}
               />
             ))}
           </div>
         </div>
-        
+
         <div className={styles.productInfo}>
           <div className={styles.category}>
             <Tag type="gray">{product.category}</Tag>
           </div>
           <h1 className={styles.title}>{product.title}</h1>
           <h2 className={styles.brand}>{product.brand}</h2>
-          
+
           <p className={styles.description}>{product.description}</p>
-          
+
           <div className={styles.priceContainer}>
-            <p className={styles.price}>${product.price.toFixed(2)}</p>
+            <p className={styles.price}>
+              {t('products.card.price', { amount: product.price.toFixed(2) })}
+            </p>
             {product.discountPercentage > 0 && (
-              <p className={styles.discount}>{product.discountPercentage}% off</p>
+              <p className={styles.discount}>
+                {t('products.card.discount', { percentage: product.discountPercentage })}
+              </p>
             )}
           </div>
-          
+
           <div className={styles.details}>
             <div className={styles.detailItem}>
-              <p className={styles.label}>Rating</p>
+              <p className={styles.label}>{t('products.details.rating')}</p>
               <p className={styles.value}>{product.rating}/5</p>
             </div>
-            
+
             <div className={styles.detailItem}>
-              <p className={styles.label}>Stock</p>
-              <p className={styles.value}>{product.stock} units</p>
+              <p className={styles.label}>{t('products.details.brand')}</p>
+              <p className={styles.value}>{product.brand}</p>
+            </div>
+
+            <div className={styles.detailItem}>
+              <p className={styles.label}>{t('products.details.category')}</p>
+              <p className={styles.value}>{product.category}</p>
             </div>
           </div>
-          
-          <Button>Add to Cart</Button>
+
+          <Button>{t('products.details.addToCart')}</Button>
+          <Button
+            kind="tertiary"
+            renderIcon={ArrowLeft}
+            onClick={handleBackClick}
+            className={styles.backButton}
+          >
+            {t('products.details.backToProducts')}
+          </Button>
         </div>
       </div>
     </div>

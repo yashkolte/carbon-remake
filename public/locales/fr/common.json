@@ -1,0 +1,90 @@
+{
+  "header": {
+    "dashboard": "Tableau de bord",
+    "archive": "Archives",
+    "documents": "Documents",
+    "notifications": "Notifications",
+    "settings": "Paramètres",
+    "user": "Utilisateur",
+    "theme": {
+      "toggleLight": "Passer en mode clair",
+      "toggleDark": "Passer en mode sombre"
+    },
+    "language": {
+      "select": "Choisir la langue",
+      "en": "Anglais",
+      "fr": "Français",
+      "de": "Allemand",
+      "es": "Espagnol"
+    }
+  },
+  "login": {
+    "signIn": "Se connecter",
+    "email": "Email",
+    "emailPlaceholder": "Entrez votre email",
+    "password": "Mot de passe",
+    "passwordPlaceholder": "Entrez votre mot de passe",
+    "forgotPassword": "Mot de passe oublié?",
+    "dontHaveAccount": "Vous n'avez pas de compte?",
+    "createAccount": "Créer un compte",
+    "signingIn": "Connexion en cours...",
+    "validation": {
+      "invalidEmail": "Adresse email invalide",
+      "emailRequired": "L'email est requis",
+      "passwordRequired": "Le mot de passe est requis",
+      "passwordMinLength": "Le mot de passe doit contenir au moins 8 caractères"
+    }
+  },
+  "dashboard": {
+    "overview": "Aperçu du tableau de bord",
+    "tiles": {
+      "archiveData": {
+        "title": "Archives de données",
+        "description": "Voir et gérer les archives"
+      },
+      "products": {
+        "title": "Produits",
+        "description": "Voir les produits"
+      },
+      "documents": {
+        "title": "Documents",
+        "description": "Gérer vos documents"
+      },
+      "overview": {
+        "title": "Aperçu",
+        "description": "Aperçu et état du système"
+      }
+    },
+    "modal": {
+      "comingSoon": "Fonctionnalité à venir",
+      "underDevelopment": "Cette fonctionnalité est en cours de développement.",
+      "close": "Fermer"
+    }
+  },
+  "products": {
+    "title": "Produits",
+    "loading": "Chargement des produits...",
+    "error": "Échec du chargement des produits",
+    "filters": {
+      "all": "Tous",
+      "featured": "En vedette",
+      "onSale": "En solde"
+    },
+    "pageTitle": "Produits | Carbon Store",
+    "card": {
+      "discount": "{{percentage}}% de réduction",
+      "price": "{{amount}}€"
+    },
+    "details": {
+      "title": "Détails du produit",
+      "brand": "Marque",
+      "category": "Catégorie",
+      "rating": "Évaluation",
+      "price": "Prix",
+      "discount": "Réduction",
+      "description": "Description",
+      "addToCart": "Ajouter au panier",
+      "backToProducts": "Retour aux produits"
+    }
+  }
+}

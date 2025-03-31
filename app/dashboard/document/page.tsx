@@ -7,12 +7,11 @@ import styles from './Document.module.scss'
 import { Column, FlexGrid, Row, Stack, Tile } from '@carbon/react';
 import Dropdown from '@/components/shared/Dropdown';
 import Table from '@/components/shared/Table';
-import { Value } from 'sass';
 
-const page = () => {
+const Page = () => {
     const [inputValue1, setInputValue1] = useState('');
     const [inputValue2, setInputValue2] = useState('');
-const [selectedDropdownItem, setSelectedDropdownItem] = useState<{id: string, text: string, value: string} | null>(null);
+    const [selectedDropdownItem, setSelectedDropdownItem] = useState<{ id: string, text: string, value: string } | undefined>(undefined);
 
     const handleChange1 = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue1(e.target.value);
@@ -58,7 +57,7 @@ const [selectedDropdownItem, setSelectedDropdownItem] = useState<{id: string, te
         { id: '2', name: 'Jane Smith', age: 32, status: 'Inactive' },
         { id: '3', name: 'Bob Johnson', age: 45, status: 'Active' },
     ];
-    
+
 
 
     return (
@@ -124,4 +123,4 @@ const [selectedDropdownItem, setSelectedDropdownItem] = useState<{id: string, te
     )
 }
 
-export default page
+export default Page

@@ -3,7 +3,7 @@ import { TextInput as CarbonTextInput } from '@carbon/react';
 
 interface TextInputProps {
     id: string;
-    name: string;
+    name?: string;
     type: string;
     labelText: string;
     placeholder?: string;
@@ -13,6 +13,7 @@ interface TextInputProps {
     invalid?: boolean;
     invalidText?: string;
     required?: boolean;
+    disabled?: any;
 }
 
 const CustomTextInput = (props: TextInputProps) => {
@@ -27,7 +28,8 @@ const CustomTextInput = (props: TextInputProps) => {
         onBlur,
         invalid,
         invalidText,
-        required
+        required,
+        disabled
     } = props;
 
     return (
@@ -43,6 +45,7 @@ const CustomTextInput = (props: TextInputProps) => {
             invalid={invalid}
             invalidText={invalidText}
             required={required}
+            disabled={disabled}
         />
     );
 }

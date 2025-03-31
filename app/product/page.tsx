@@ -5,6 +5,7 @@ import Head from 'next/head';
 import { Loading, ContentSwitcher, Switch } from '@carbon/react';
 import ProductCard from '@/components/ProductCard';
 import styles from './products.module.scss';
+import { useTranslation } from 'react-i18next';
 
 interface Product {
   id: number;
@@ -22,6 +23,7 @@ export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const { t } = useTranslation('common');
 
   useEffect(() => {
     async function fetchProducts() {
@@ -34,19 +36,19 @@ export default function Home() {
         setProducts(data.products);
       } catch (error) {
         console.error('Error fetching products:', error);
-        setError('Failed to load products');
+        setError(t('products.error'));
       } finally {
         setLoading(false);
       }
     }
-    
+
     fetchProducts();
-  }, []);
+  }, [t]);
 
   if (loading) {
     return (
       <div className={styles.loading}>
-        <Loading description="Loading products..." withOverlay={false} />
+        <Loading description={t('products.loading')} withOverlay={false} />
       </div>
     );
   }
@@ -58,24 +60,24 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Products | Carbon Store</title>
+        <title>{t('products.pageTitle')}</title>
       </Head>
       <div className={styles.container}>
         <div className={styles.header}>
-          <h1 className={styles.title}>Products</h1>
+          <h1 className={styles.title}>{t('products.title')}</h1>
           <div className={styles.filterControls}>
-            <ContentSwitcher 
-              onChange={() => {}} 
+            <ContentSwitcher
+              onChange={() => { }}
               selectedIndex={0}
               size="md"
             >
-              <Switch name="all" text="All" />
-              <Switch name="featured" text="Featured" />
-              <Switch name="sale" text="On Sale" />
+              <Switch name="all" text={t('products.filters.all')} />
+              <Switch name="featured" text={t('products.filters.featured')} />
+              <Switch name="sale" text={t('products.filters.onSale')} />
             </ContentSwitcher>
           </div>
         </div>
-        
+
         <div className={styles.productsGrid}>
           {products.map(product => (
             <ProductCard key={product.id} product={product} />
