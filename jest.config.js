@@ -17,6 +17,13 @@ const customJestConfig = {
     // Handle CSS imports (without CSS modules)
     "\\.(scss|sass|css)$": "identity-obj-proxy",
   },
+  collectCoverage: true,
+  collectCoverageFrom: [
+    "<rootDir>/components/LoginForm.tsx",
+    "<rootDir>/dashboard/submitform/page.tsx",
+  ],
+  coveragePathIgnorePatterns: ["node_modules", "__tests__"],
+  coverageReporters: ["json", "lcov", "text", "clover"],
 };
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async

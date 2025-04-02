@@ -5,7 +5,7 @@ import { I18nextProvider } from 'react-i18next';
 import i18n from '@/i18n/client';
 
 interface I18nProviderProps {
-    children: ReactNode;
+    readonly children: ReactNode;
 }
 
 export default function I18nProvider({ children }: I18nProviderProps) {

@@ -221,24 +221,6 @@ describe('LoginPage Component', () => {
         });
     });
 
-    it.skip('submits the form with valid data', async () => {
-        const user = userEvent.setup();
-        render(<LoginPage />);
-
-        // Fill in the form with valid data
-        const emailInput = screen.getByLabelText('login.email');
-        const passwordInput = screen.getByLabelText('login.password');
-
-        await user.type(emailInput, 'test@example.com');
-        await user.type(passwordInput, 'password123');
-
-        // Verify that the inputs have correct values
-        expect(emailInput).toHaveValue('test@example.com');
-        expect(passwordInput).toHaveValue('password123');
-
-        // We skip the actual submission as it's difficult to test with the current setup
-    });
-
     it('shows validation errors for empty fields', async () => {
         const user = userEvent.setup();
         render(<LoginPage />);

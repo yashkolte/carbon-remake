@@ -61,7 +61,7 @@ export default function DashboardPage() {
       <div className="tilesGrid">
         {tiles.map((tile, index) => (
           <ClickableTile
-            key={index}
+            key={tile.title}
             className="tile"
             onClick={tile.action}
           >
