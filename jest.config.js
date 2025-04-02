@@ -20,7 +20,7 @@ const customJestConfig = {
   collectCoverage: true,
   collectCoverageFrom: [
     "<rootDir>/components/LoginForm.tsx",
-    "<rootDir>/dashboard/submitform/page.tsx",
+    "<rootDir>/app/dashboard/submitform/page.tsx",
   ],
   coveragePathIgnorePatterns: ["node_modules", "__tests__"],
   coverageReporters: ["json", "lcov", "text", "clover"],

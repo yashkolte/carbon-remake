@@ -1,180 +1,141 @@
-"use client";
+'use client';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useRouter, useSearchParams } from 'next/navigation';
 
-import React, { useState, useEffect, useRef } from "react";
-import { Button, Grid, Column, Dropdown } from "@carbon/react";
-import TextInputField from "@/components/shared/TextInput";
-import { useDispatch, useSelector } from "react-redux";
-import { saveForm } from "@/redux/slices/formSlice";
-import { useRouter } from "next/navigation";
-import { RootState } from "@/redux/store";
+import { Dropdown, TextInput, Button, Row, Column, FlexGrid, Form } from '@carbon/react';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import { AppDispatch, RootState } from '@/redux/store';
+import { updateForm } from '@/redux/formSlice';
 
-// Define form state type
-type UserFormState = {
-  firstName: string;
-  lastName: string;
-  gender: string;
-  relationship: string;
-  fileName: string;
-};
 
-const SubmitForm = () => {
-  const dispatch = useDispatch();
+const FormComponent = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const formState = useSelector((state: RootState) => state.form);
+  const searchParams = useSearchParams();
+  const isReadOnly = searchParams.get('isReadOnly') === 'true';
   const router = useRouter();
-  const formData = useSelector((state: RootState) => state.form);
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  // Define initial state for form values
-  const [formValues, setFormValues] = useState<UserFormState>({
-    firstName: "",
-    lastName: "",
-    gender: "",
-    relationship: "",
-    fileName: "",
+  // Update initialValues to include textInputAddress
+  const formik = useFormik({
+    initialValues: {
+      dropdown1: formState.dropdown1 || '',
+      dropdown2: formState.dropdown2 || '',
+      textInput1: formState.textInput1 || '',
+      textInput2: formState.textInput2 || '',
+      textInputAddress: formState.textInputAddress || '', // New field added here
+    },
+    validationSchema: Yup.object({
+      textInput1: Yup.string().required('Name is required'),
+      textInput2: Yup.string().email('Invalid email address').required('Email is required'),
+      textInputAddress: Yup.string().required('Address is required'),
+    }),
+    onSubmit: (values) => {
+      console.log('Form Submitted:', values);
+      dispatch(updateForm(values)); 
+      router.push('/Dashboard');
+    },
   });
 
-  // Load saved data when revisiting
-  useEffect(() => {
-    if (formData.isReadOnly) {
-      setFormValues({
-        firstName: formData.firstName || "",
-        lastName: formData.lastName || "",
-        gender: formData.gender || "",
-        relationship: formData.relationship || "",
-        fileName: formData.fileName || "",
-      });
-    }
-  }, [formData]);
-
-  // Handle input changes
-  const handleChange = (id: string, value: string) => {
-    setFormValues((prev) => ({ ...prev, [id]: value }));
+  // Handle dropdown and text field changes, and update Redux state
+  const handleDropdownChange = (field: string, value: string) => {
+    formik.setFieldValue(field, value); // Update Formik's internal state
+    dispatch(updateForm({ ...formik.values, [field]: value })); // Update Redux state
   };
 
-  // Handle file selection
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0]; // Check if file exists
-    if (file) {
-      setFormValues((prev) => ({ ...prev, fileName: file.name }));
-    }
-  };
-
-  // Browse button click to trigger file input
-  const handleBrowseClick = () => {
-    fileInputRef.current?.click();
-  };
-
-  // Handle form submission
-  const handleSubmit = () => {
-    dispatch(saveForm(formValues));
-    router.push("/dashboard");
+  const handleTextInputChange = (field: string, value: string) => {
+    formik.setFieldValue(field, value); // Update Formik's internal state
+    dispatch(updateForm({ ...formik.values, [field]: value })); // Update Redux state
   };
 
   return (
-    <Grid fullWidth className="formContainer">
-      {/* First Name */}
-      <Column sm={4} md={4} lg={8} className="column">
-        <TextInputField
-          labelText="Enter First Name"
-          id="firstName"
-          value={formValues.firstName}
-          onChange={(e) => handleChange("firstName", e.target.value)}
-          disabled={formData.isReadOnly}
-          type="text"
-        />
-      </Column>
-
-      {/* Last Name */}
-      <Column sm={4} md={4} lg={8} className="column">
-        <TextInputField
-          labelText="Enter Last Name"
-          id="lastName"
-          value={formValues.lastName}
-          onChange={(e) => handleChange("lastName", e.target.value)}
-          disabled={formData.isReadOnly}
-          type="text"
-        />
-      </Column>
-
-      {/* Gender Dropdown */}
-      <Column sm={4} md={4} lg={8} className="column">
-        <Dropdown
-          id="gender"
-          label="Select Gender"
-          items={["Male", "Female", "Other"]}
-          selectedItem={formValues.gender || undefined}
-          onChange={({ selectedItem }) => {
-            if (selectedItem) {
-              handleChange("gender", selectedItem);
-            }
-          }}
-          disabled={formData.isReadOnly}
-          titleText={undefined}
-        />
-      </Column>
-
-      {/* Relationship Dropdown */}
-      <Column sm={4} md={4} lg={8} className="column">
-        <Dropdown
-          id="relationship"
-          label="Select Relationship Status"
-          items={["Single", "Married"]}
-          selectedItem={formValues.relationship || undefined}
-          onChange={({ selectedItem }) => {
-            if (selectedItem) {
-              handleChange("relationship", selectedItem);
-            }
-          }}
-          disabled={formData.isReadOnly}
-          titleText={undefined}
-        />
-      </Column>
-
-      {/* File Input Field with Browse Button */}
-      <Column sm={4} md={4} lg={8} className="column">
-        <div className="fileInputContainer">
-          <TextInputField
-            id="fileInput"
-            name="fileInput"
-            labelText="Select a file"
-            placeholder="No file chosen"
-            value={formValues.fileName} // ✅ Fixed
-            // readOnly
-            type="text"
-            onChange={function (e: React.ChangeEvent<HTMLInputElement>): void {
-              throw new Error("Function not implemented.");
-            }}
-          />
-          <input
-            type="file"
-            ref={fileInputRef}
-            className="hiddenFileInput"
-            onChange={handleFileChange}
-          />
-          <Button
-            kind="secondary"
-            // size="sm"
-            onClick={handleBrowseClick}
-            className="browseButton"
-          >
-            Browse
-          </Button>
-        </div>
-      </Column>
-
-      {/* Submit Button */}
-      {!formData.isReadOnly && (
-        <Column sm={4} md={4} lg={8} className="column">
-          <Button
-            kind="primary"
-            className="submitBtn"
-            onClick={handleSubmit}
-          >
-            Submit
-          </Button>
-        </Column>
-      )}
-    </Grid>
+    <Form onSubmit={formik.handleSubmit} data-testid="form">
+      <FlexGrid>
+        <Row>
+          <Column lg={4}>
+            <Dropdown
+              id="dropdown1"
+              label="Gender"
+              titleText="Select an option"
+              items={['Male', 'Female', 'Other']}
+              selectedItem={formik.values.dropdown1}
+              onChange={({ selectedItem }) => handleDropdownChange('dropdown1', selectedItem as string)}
+              disabled={isReadOnly}
+              data-testid="dropdown1"
+            />
+          </Column>
+          <Column lg={4}>
+            <Dropdown
+              id="dropdown2"
+              label="Department"
+              titleText="Select an option"
+              items={['CSE', 'ECE', 'ISE']}
+              selectedItem={formik.values.dropdown2}
+              onChange={({ selectedItem }) => handleDropdownChange('dropdown2', selectedItem as string)}
+              disabled={isReadOnly}
+              data-testid="dropdown2"
+            />
+          </Column>
+        </Row>
+        <Row>
+          <Column lg={4}>
+            <TextInput
+              id="textInput1"
+              labelText="Name"
+              value={formik.values.textInput1}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              invalid={formik.touched.textInput1 && !!formik.errors.textInput1}
+              invalidText={formik.errors.textInput1}
+              disabled={isReadOnly}
+              data-testid="textInput1"
+            />
+          </Column>
+          <Column lg={4}>
+            <TextInput
+              id="textInput2"
+              labelText="Email"
+              type="email"
+              value={formik.values.textInput2}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              invalid={formik.touched.textInput2 && !!formik.errors.textInput2}
+              invalidText={formik.errors.textInput2}
+              disabled={isReadOnly}
+              data-testid="textInput2"
+            />
+          </Column>
+        </Row>
+        <Row>
+          <Column lg={4}>
+            <TextInput
+              id="textInputAddress"
+              labelText="Address"
+              placeholder="Enter your address"
+              type="text"
+              value={formik.values.textInputAddress} // Bind the Address input value to Formik's state
+              onChange={e => handleTextInputChange('textInputAddress', e.target.value)} // Handle change and dispatch to Redux
+              onBlur={formik.handleBlur}
+              invalid={formik.touched.textInputAddress && !!formik.errors.textInputAddress}
+              invalidText={formik.errors.textInputAddress}
+              disabled={isReadOnly}
+              data-testid="textInputAddress"
+            />
+          </Column>
+        </Row>
+        {!isReadOnly && (
+          <Row>
+            <Column lg={4}>
+              <Button type="submit" kind="primary" data-testid="submitButton">
+                Submit
+              </Button>
+            </Column>
+          </Row>
+        )}
+      </FlexGrid>
+    </Form>
   );
 };
 
-export default SubmitForm;
+export default FormComponent;
