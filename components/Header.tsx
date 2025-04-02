@@ -45,7 +45,7 @@ export default function DashboardHeader() {
                 <>
                     <Header aria-label="IBM IntelliSphere® Optim™">
                         <HeaderName href='/' prefix="IBM IntelliSphere®">Optim™</HeaderName>
-                        <HeaderGlobalBar>
+                        <HeaderGlobalBar >
                             {/* Language Switcher */}
                             <OverflowMenu
                                 renderIcon={() => <Globe size={20} />}
@@ -76,6 +76,7 @@ export default function DashboardHeader() {
 
                             {/* Theme Toggle */}
                             <Tooltip
+                                size="sm"
                                 align="bottom"
                                 direction="bottom"
                                 label={theme === 'light'

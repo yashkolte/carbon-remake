@@ -12,7 +12,7 @@ import { Value } from 'sass';
 const page = () => {
     const [inputValue1, setInputValue1] = useState('');
     const [inputValue2, setInputValue2] = useState('');
-    const [selectedDropdownItem, setSelectedDropdownItem] = useState('');
+    const [selectedDropdownItem, setSelectedDropdownItem] = useState<{ id: string, text: string, value: string } | undefined>(undefined);
 
     const handleChange1 = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue1(e.target.value);
@@ -24,7 +24,7 @@ const page = () => {
 
     const handleDropdownChange = (selectedItem: any) => {
         console.log('Selected item:', selectedItem);
-        setSelectedDropdownItem(selectedItem.id);
+        setSelectedDropdownItem(selectedItem);
     };
 
     const dropdownItems = [{

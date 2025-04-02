@@ -3,7 +3,6 @@
 import React, { useState } from 'react'
 import TextInput from '@/components/shared/TextInput'
 import Button from '@/components/shared/Button'
-import styles from './Document.module.scss'
 import { Column, FlexGrid, Row, Stack, Tile } from '@carbon/react';
 import Dropdown from '@/components/shared/Dropdown';
 import Table from '@/components/shared/Table';
@@ -11,7 +10,9 @@ import Table from '@/components/shared/Table';
 const Page = () => {
     const [inputValue1, setInputValue1] = useState('');
     const [inputValue2, setInputValue2] = useState('');
-    const [selectedDropdownItem, setSelectedDropdownItem] = useState<{ id: string, text: string, value: string } | undefined>(undefined);
+    const [selectedDropdownItem, setSelectedDropdownItem] = useState<{
+        id: string, text: string, value: string
+    } | undefined>(undefined);
 
     const handleChange1 = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue1(e.target.value);
@@ -21,9 +22,9 @@ const Page = () => {
         setInputValue2(e.target.value);
     };
 
-    const handleDropdownChange = (selectedItem: any) => {
-        console.log('Selected item:', selectedItem);
-        setSelectedDropdownItem(selectedItem.id);
+    const handleDropdownChange = (dropdownItems: any) => {
+        console.log('Selected item:', dropdownItems);
+        setSelectedDropdownItem(dropdownItems);
     };
 
     const dropdownItems = [{
@@ -65,17 +66,17 @@ const Page = () => {
             {/* <h1>Shared Page</h1>
             <p>This is the shared page content.</p> */}
 
-            <div className={`${styles.mainPage}`}>
+            <div className="mainPage">
                 <FlexGrid>
-                    <Row className={styles.mainGrid}>
+                    <Row className="mainGrid">
 
                         <Column lg={10} md={10} sm={4}>
-                            <Tile className={styles.loginTile}>
+                            <Tile className="loginTile">
                                 <Stack gap={7}>
-                                    <div className={styles.headerWrapper}>
-                                        <h1 className={styles.title}>Document Page</h1>
+                                    <div className="headerWrapper">
+                                        <h1 className="title">Document Page</h1>
                                     </div>
-                                    <Column className={styles.inputColButton}>
+                                    <Column className="inputColButton">
                                         <TextInput
                                             id="example-input-1"
                                             name="example1"

@@ -16,7 +16,6 @@ import {
 } from '@carbon/react';
 import TextInput from '@/components/shared/TextInput';
 import { Login } from '@carbon/icons-react';
-import styles from './LoginForm.module.scss';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useTranslation } from 'react-i18next';
 
@@ -25,7 +24,7 @@ interface LoginValues {
     password: string;
 }
 
-const LoginPage: React.FC = () => {
+const LoginPage = () => {
     const router = useRouter();
     const { theme } = useTheme();
     const { t } = useTranslation('common');
@@ -49,11 +48,8 @@ const LoginPage: React.FC = () => {
         { setSubmitting }: FormikHelpers<LoginValues>
     ) => {
         try {
-            // TODO: Replace with your actual authentication logic
             console.log('Login attempt with:', values);
-            // Simulate API call
             await new Promise(resolve => setTimeout(resolve, 1500));
-            // On successful login, redirect to dashboard
             router.push('/dashboard')
         } catch (error) {
             console.error('Login failed:', error);
@@ -68,19 +64,19 @@ const LoginPage: React.FC = () => {
     }, [theme]);
 
     // Make sure we have a valid theme class
-    const themeClass = theme === 'dark' ? styles.dark : styles.light;
+    const themeClass = theme === 'dark' ? 'dark-theme' : 'light-theme';
 
     return (
-        <div className={`${styles.loginPage} ${themeClass}`}>
-            <FlexGrid >
-                <Row className={styles.loginGrid}>
+        <div className={`loginPage ${themeClass}`}>
+            <FlexGrid>
+                <Row className="loginGrid">
                     <Column lg={4} md={2} sm={0} />
                     <Column lg={8} md={4} sm={4}>
-                        <Tile className={styles.loginTile}>
+                        <Tile className="loginTile">
                             <Stack gap={7}>
-                                <div className={styles.headerWrapper}>
-                                    <Login className={styles.loginIcon} />
-                                    <h1 className={styles.title}>{t('login.signIn')}</h1>
+                                <div className="headerWrapper">
+                                    <Login className="loginIcon" />
+                                    <h1 className="title">{t('login.signIn')}</h1>
                                 </div>
                                 <Formik
                                     initialValues={initialValues}
@@ -113,13 +109,13 @@ const LoginPage: React.FC = () => {
                                                     invalid={touched.password && !!errors.password}
                                                     invalidText={touched.password ? errors.password : ''}
                                                 />
-                                                <div className={styles.forgotPasswordWrapper}>
+                                                <div className="forgotPasswordWrapper">
                                                     <Link href="/forgot-password">{t('login.forgotPassword')}</Link>
                                                 </div>
                                                 <Button
                                                     type="submit"
                                                     disabled={isSubmitting}
-                                                    className={styles.loginButton}
+                                                    className="loginButton"
                                                 >
                                                     {isSubmitting ? (
                                                         <>
@@ -129,7 +125,7 @@ const LoginPage: React.FC = () => {
                                                         t('login.signIn')
                                                     )}
                                                 </Button>
-                                                <div className={styles.signupWrapper}>
+                                                <div className="signupWrapper">
                                                     <p>
                                                         {t('login.dontHaveAccount')}{' '}
                                                         <Link href="/register">{t('login.createAccount')}</Link>

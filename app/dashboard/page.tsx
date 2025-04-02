@@ -15,7 +15,6 @@ import {
   Document,
   ChartColumn,
 } from '@carbon/icons-react';
-import styles from './dashboard.module.scss';
 import { useTranslation } from 'react-i18next';
 
 export default function DashboardPage() {
@@ -59,15 +58,15 @@ export default function DashboardPage() {
         </Column>
       </Grid>
 
-      <div className={styles.tilesGrid}>
+      <div className="tilesGrid">
         {tiles.map((tile, index) => (
           <ClickableTile
             key={index}
-            className={styles.tile}
+            className="tile"
             onClick={tile.action}
           >
             <AspectRatio ratio="1x1">
-              <div className={styles.tileContent}>
+              <div className="tileContent">
                 <tile.icon size={32} />
                 <h3 className="cds--type-productive-heading-02">{tile.title}</h3>
                 <p className="cds--type-body-long-01">{tile.description}</p>
@@ -84,7 +83,7 @@ export default function DashboardPage() {
         onRequestClose={() => setIsModalOpen(false)}
         onRequestSubmit={() => setIsModalOpen(false)}
       >
-        <div className={styles.modalContent}>
+        <div className="modalContent">
           <p>{t('dashboard.modal.underDevelopment')}</p>
         </div>
       </Modal>

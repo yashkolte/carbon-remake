@@ -1,14 +1,12 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { Button, Grid, Column } from "@carbon/react";
-import Dropdown from "@/components/shared/Dropdown";
+import { Button, Grid, Column, Dropdown } from "@carbon/react";
 import TextInputField from "@/components/shared/TextInput";
 import { useDispatch, useSelector } from "react-redux";
 import { saveForm } from "@/redux/slices/formSlice";
 import { useRouter } from "next/navigation";
 import { RootState } from "@/redux/store";
-import styles from "./submitform.module.scss"; // Import SCSS file
 
 // Define form state type
 type UserFormState = {
@@ -72,9 +70,9 @@ const SubmitForm = () => {
   };
 
   return (
-    <Grid fullWidth className={styles.formContainer}>
+    <Grid fullWidth className="formContainer">
       {/* First Name */}
-      <Column sm={4} md={4} lg={8} className={styles.column}>
+      <Column sm={4} md={4} lg={8} className="column">
         <TextInputField
           labelText="Enter First Name"
           id="firstName"
@@ -86,7 +84,7 @@ const SubmitForm = () => {
       </Column>
 
       {/* Last Name */}
-      <Column sm={4} md={4} lg={8} className={styles.column}>
+      <Column sm={4} md={4} lg={8} className="column">
         <TextInputField
           labelText="Enter Last Name"
           id="lastName"
@@ -98,32 +96,42 @@ const SubmitForm = () => {
       </Column>
 
       {/* Gender Dropdown */}
-      <Column sm={4} md={4} lg={8} className={styles.column}>
+      <Column sm={4} md={4} lg={8} className="column">
         <Dropdown
           id="gender"
           label="Select Gender"
           items={["Male", "Female", "Other"]}
-          selectedItem={formValues.gender}
-          onChange={(val) => handleChange("gender", val)}
+          selectedItem={formValues.gender || undefined}
+          onChange={({ selectedItem }) => {
+            if (selectedItem) {
+              handleChange("gender", selectedItem);
+            }
+          }}
           disabled={formData.isReadOnly}
+          titleText={undefined}
         />
       </Column>
 
       {/* Relationship Dropdown */}
-      <Column sm={4} md={4} lg={8} className={styles.column}>
+      <Column sm={4} md={4} lg={8} className="column">
         <Dropdown
           id="relationship"
           label="Select Relationship Status"
           items={["Single", "Married"]}
-          selectedItem={formValues.relationship}
-          onChange={(val) => handleChange("relationship", val)}
+          selectedItem={formValues.relationship || undefined}
+          onChange={({ selectedItem }) => {
+            if (selectedItem) {
+              handleChange("relationship", selectedItem);
+            }
+          }}
           disabled={formData.isReadOnly}
+          titleText={undefined}
         />
       </Column>
 
       {/* File Input Field with Browse Button */}
-      <Column sm={4} md={4} lg={8} className={styles.column}>
-        <div className={styles.fileInputContainer}>
+      <Column sm={4} md={4} lg={8} className="column">
+        <div className="fileInputContainer">
           <TextInputField
             id="fileInput"
             name="fileInput"
@@ -139,14 +147,14 @@ const SubmitForm = () => {
           <input
             type="file"
             ref={fileInputRef}
-            className={styles.hiddenFileInput}
+            className="hiddenFileInput"
             onChange={handleFileChange}
           />
           <Button
             kind="secondary"
             // size="sm"
             onClick={handleBrowseClick}
-            className={styles.browseButton}
+            className="browseButton"
           >
             Browse
           </Button>
@@ -155,10 +163,10 @@ const SubmitForm = () => {
 
       {/* Submit Button */}
       {!formData.isReadOnly && (
-        <Column sm={4} md={4} lg={8} className={styles.column}>
+        <Column sm={4} md={4} lg={8} className="column">
           <Button
             kind="primary"
-            className={styles.submitBtn}
+            className="submitBtn"
             onClick={handleSubmit}
           >
             Submit

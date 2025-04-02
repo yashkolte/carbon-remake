@@ -1,8 +1,7 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Dropdown as CarbonDropdown } from '@carbon/react';
-import styles from './Dropdown.module.scss';
 
 export interface DropdownOption {
   id: string;
@@ -16,7 +15,7 @@ export interface DropdownProps {
   helperText?: string;
   label?: string;
   items: DropdownOption[];
-  selectedItem?: DropdownOption;
+  selectedItem?: DropdownOption | null;
   onChange?: (selectedItem: DropdownOption) => void;  // Make onChange optional
   disabled?: boolean;
   className?: string;
@@ -51,21 +50,37 @@ const Dropdown: React.FC<DropdownProps> = ({
   direction = 'bottom',
   width,
 }) => {
+  // Track controlled state internally to prevent switching between controlled/uncontrolled
+  const [internalSelected, setInternalSelected] = useState<DropdownOption | undefined>(undefined);
+
+  // Sync with external selectedItem prop
+  useEffect(() => {
+    if (selectedItem !== undefined) {
+      setInternalSelected(selectedItem || undefined);
+    }
+  }, [selectedItem]);
+
+  // Use internal state if available, otherwise use prop (ensures consistent value type)
+  const normalizedSelectedItem = internalSelected;
+
   const customStyles = width ? { width: typeof width === 'number' ? `${width}px` : width } : {};
 
+  const handleChange = ({ selectedItem: newSelectedItem }: { selectedItem: DropdownOption | null }) => {
+    const item = newSelectedItem as DropdownOption;
+    setInternalSelected(item);
+    onChange(item);
+  };
+
   return (
-    <div
-      className={`${styles.dropdownWrapper} ${className}`}
-      style={customStyles}
-    >
+    <div className="dropdownWrapper">
       <CarbonDropdown
         id={id}
         titleText={titleText}
         helperText={helperText}
         label={label ?? placeholder}
         items={items}
-        selectedItem={selectedItem}
-        onChange={({ selectedItem }) => onChange(selectedItem as DropdownOption)}
+        selectedItem={normalizedSelectedItem}
+        onChange={handleChange}
         disabled={disabled}
         size={size}
         invalid={invalid}
@@ -73,7 +88,7 @@ const Dropdown: React.FC<DropdownProps> = ({
         warn={warn}
         warnText={warnText}
         direction={direction}
-        className={styles.dropdown}
+        className="dropdown"
       />
     </div>
   );

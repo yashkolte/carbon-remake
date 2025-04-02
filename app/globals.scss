@@ -8,7 +8,14 @@
 @use '@carbon/react/scss/spacing';
 @use '@carbon/react/scss/type';
 @use '@carbon/react/scss/colors';
-
+@use '@carbon/react/scss/theme';
+@use '../components/LoginForm.scss' as *;
+@use '../components/ProductCard.scss' as *;
+@use './dashboard/submitform/SubmitForm.scss' as *;
+@use './Loading.scss' as *;
+@use './dashboard/dashboard.scss' as *;
+@use './dashboard/document/Document.scss' as *;
+@use '../components/shared/Dropdown.scss' as *;
 
 /* Default theme (light) */
 :root,

@@ -1,6 +1,6 @@
-projectKey=Carbon-Remake
+projectKey=Carbon-Reborn
 serverUrl=http://localhost:9000
 serverVersion=25.3.0.104237
-dashboardUrl=http://localhost:9000/dashboard?id=Carbon-Remake
-ceTaskId=cefd9838-7a61-41c8-851e-37da89547bcd
-ceTaskUrl=http://localhost:9000/api/ce/task?id=cefd9838-7a61-41c8-851e-37da89547bcd
+dashboardUrl=http://localhost:9000/dashboard?id=Carbon-Reborn
+ceTaskId=76999690-8d6d-49a1-bad4-6367a52e2c70
+ceTaskUrl=http://localhost:9000/api/ce/task?id=76999690-8d6d-49a1-bad4-6367a52e2c70

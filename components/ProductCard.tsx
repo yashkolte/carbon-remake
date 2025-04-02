@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { FC } from 'react';
 import { Tag } from '@carbon/react';
-import styles from './ProductCard.module.scss';
 import { useTranslation } from 'react-i18next';
 
 interface Product {
@@ -22,31 +21,31 @@ interface ProductCardProps {
   product: Product;
 }
 
-const ProductCard: FC<ProductCardProps> = ({ product }) => {
+const ProductCard = ({ product }: ProductCardProps) => {
   const { t, i18n } = useTranslation('common');
 
   return (
     <Link href={`/product/${product.id}`} passHref legacyBehavior>
-      <div className={styles.productCard} role="button" tabIndex={0}>
-        <div className={styles.imageContainer}>
+      <div className="productCard" role="button" tabIndex={0}>
+        <div className="imageContainer">
           <img
             src={product.thumbnail}
             alt={product.title}
-            className={styles.thumbnail}
+            className="thumbnail"
           />
         </div>
-        <div className={styles.content}>
-          <div className={styles.categoryTag}>
+        <div className="content">
+          <div className="categoryTag">
             <Tag type="gray" size="sm">{product.category}</Tag>
           </div>
-          <h3 className={styles.title}>{product.title}</h3>
-          <p className={styles.description}>{product.description}</p>
-          <div className={styles.priceContainer}>
-            <p className={styles.price}>
+          <h3 className="title">{product.title}</h3>
+          <p className="description">{product.description}</p>
+          <div className="priceContainer">
+            <p className="price">
               {t('products.card.price', { amount: product.price.toFixed(2) })}
             </p>
             {product.discountPercentage && product.discountPercentage > 0 && (
-              <span className={styles.discount}>
+              <span className="discount">
                 {t('products.card.discount', { percentage: product.discountPercentage })}
               </span>
             )}

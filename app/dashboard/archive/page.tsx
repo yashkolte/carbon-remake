@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { Modal } from '@carbon/react';
-import styles from '../dashboard.module.scss';
 import CustomDataTable from '@/components/CustomDataTable';
 
 
@@ -32,7 +31,7 @@ export default function ArchivePage() {
   const [selectedRow] = useState<any>(null);
 
   return (
-    <div className={styles.tableContainer}>
+    <div className="tableContainer">
       {/* <h1 className="cds--type-productive-heading-05">Archive Records</h1> */}
 
       <CustomDataTable />
@@ -44,7 +43,7 @@ export default function ArchivePage() {
         secondaryButtonText="Archive"
         onRequestClose={() => setIsModalOpen(false)}
       >
-        <div className={styles.modalContent}>
+        <div className="modalContent">
           {selectedRow && (
             <>
               <p>ID: {selectedRow.cells[0].value}</p>
