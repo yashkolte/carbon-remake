@@ -14,6 +14,7 @@ import {
 import { Login as LoginIcon } from '@carbon/icons-react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import './LoginForm.scss';
 import { useRouter } from 'next/navigation';
 
 import { useTranslation } from 'react-i18next';
@@ -22,7 +23,7 @@ import { useTranslation } from 'react-i18next';
 export default function Login() {
   const router = useRouter();
   const { theme } = useTheme();
-  const { t } = useTranslation();
+  const { t } = useTranslation('common');
 
   const loginSchema = Yup.object().shape({
     email: Yup.string()
@@ -43,12 +44,10 @@ export default function Login() {
   });
 
   return (
-    <Theme theme={theme}>
-      <Grid className="auth-container">
-        <div style={{ position: 'absolute', top: '1rem', right: '1rem' }}>
-        </div>
-        <Tile className="auth-form">
-          <div className="header">
+    <Theme theme={theme} className='loginPage'>
+      <Grid className="loginGrid">
+        <Tile className="loginTile">
+          <div className="title">
             <h1>{t('auth.signIn')}</h1>
           </div>
           <Form onSubmit={formik.handleSubmit}>

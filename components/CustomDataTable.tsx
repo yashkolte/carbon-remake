@@ -17,7 +17,7 @@ import {
   TableCell,
   Modal
 } from "@carbon/react";
-import { TrashCan, Save, Download } from "@carbon/icons-react";
+import { Save} from "@carbon/icons-react";
 
 interface Header {
   key: string;
@@ -46,7 +46,7 @@ const CustomDataTable: React.FC = () => {
     { id: "3", name: "Server C", email: "serverc@example.com", status: "Running" }
   ]);
 
-  const handleOnHeaderAdd = () => {
+   () => {
     const length = headers.length;
     const newHeader: Header = {
       key: `header_${length}`,
@@ -67,7 +67,6 @@ const CustomDataTable: React.FC = () => {
   };
 
   return (
-    <>
     <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
       <DataTable
         rows={rows}
@@ -156,7 +155,7 @@ const CustomDataTable: React.FC = () => {
         }}
         />
     </div>
-        </>
+        
   );
 };
 

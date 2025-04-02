@@ -42,7 +42,7 @@ export default function DashboardHeader() {
     return (
         <HeaderContainer
             render={({ isSideNavExpanded, onClickSideNavExpand }) => (
-                <>
+                
                     <Header aria-label="IBM IntelliSphere® Optim™">
                         <HeaderName href='/' prefix="IBM IntelliSphere®">Optim™</HeaderName>
                         <HeaderGlobalBar >
@@ -120,7 +120,7 @@ export default function DashboardHeader() {
                             </SideNavItems>
                         </SideNav>
                     </Header>
-                </>
+                
             )}
         />
     );

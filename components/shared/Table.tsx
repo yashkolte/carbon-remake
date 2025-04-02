@@ -13,7 +13,6 @@ import {
   TableToolbar,
   TableToolbarContent,
   TableToolbarSearch,
-  Pagination,
   Button,
   TableToolbarAction,
   TableToolbarMenu,
@@ -101,8 +100,8 @@ const Table: React.FC<TableProps> = ({
     setFilteredData(data);
   }, [data]);
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const searchTerm = e.target.value.toLowerCase();
+  const handleSearchChange = (event: "" | React.ChangeEvent<HTMLInputElement>, value?: string) => {
+    const searchTerm = value?.toLowerCase() || '';
     
     if (!searchTerm) {
       setFilteredData(data);
@@ -167,14 +166,20 @@ const Table: React.FC<TableProps> = ({
   }));
 
   const rows = filteredData.map((row, index) => {
-    const formattedRow: Record<string, any> = { id: `row-${index}` };
+    const formattedRow: { id: string; [key: string]: any } = { id: `row-${index}` };
     
     columns.forEach(column => {
       const value = row[column.key];
       formattedRow[column.id] = column.formatter ? column.formatter(value, row) : value;
     });
     
-    return formattedRow;
+    return {
+      ...formattedRow,
+      cells: columns.map(column => ({
+        id: `${formattedRow.id}-${column.id}`,
+        value: formattedRow[column.id],
+      })),
+    };
   });
 
   return (
@@ -215,7 +220,7 @@ const Table: React.FC<TableProps> = ({
                 <TableToolbarContent>
                   {showSearch && (
                     <TableToolbarSearch
-                      onChange={handleSearchChange}
+                      onChange={(event, value) => handleSearchChange(event, value)}
                       placeholder="Search..."
                       className={styles.search}
                     />
@@ -258,10 +263,9 @@ const Table: React.FC<TableProps> = ({
                     )}
                     {headers.map(header => (
                       <TableHeader
-                        key={header.key}
                         {...getHeaderProps({
                           header,
-                          isSortable: header.isSortable,
+                          // Removed isSortable as it is not a valid property
                           onClick: () => handleSort(header.key),
                           sortDirection: 
                             sortBy === header.key 
@@ -286,7 +290,6 @@ const Table: React.FC<TableProps> = ({
                   ) : (
                     rows.slice((page - 1) * pageSize, page * pageSize).map(row => (
                       <TableRow 
-                        key={row.id} 
                         {...getRowProps({ row })}
                         onClick={() => onRowClick && onRowClick(filteredData[parseInt(row.id.split('-')[1])])}
                         className={onRowClick ? styles.clickableRow : ''}

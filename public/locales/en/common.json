@@ -18,21 +18,26 @@
       "es": "Spanish"
     }
   },
-  "login": {
+  "auth": {
     "signIn": "Sign in",
+    "createAccount": "Create Account",
     "email": "Email",
-    "emailPlaceholder": "Enter your email",
     "password": "Password",
-    "passwordPlaceholder": "Enter your password",
-    "forgotPassword": "Forgot password?",
-    "dontHaveAccount": "Don't have an account?",
-    "createAccount": "Create an account",
-    "signingIn": "Signing in...",
+    "confirmPassword": "Confirm Password",
+    "login": "Login",
+    "register": "Register",
+    "noAccount": "Don't have an account? Register here",
+    "haveAccount": "Already have an account? Sign in here",
     "validation": {
-      "invalidEmail": "Invalid email address",
       "emailRequired": "Email is required",
+      "emailInvalid": "Invalid email address",
       "passwordRequired": "Password is required",
-      "passwordMinLength": "Password must be at least 8 characters"
+      "passwordMin": "Password must be at least 8 characters",
+      "passwordLowercase": "Must contain at least one lowercase letter",
+      "passwordUppercase": "Must contain at least one uppercase letter",
+      "passwordNumber": "Must contain at least one number",
+      "confirmRequired": "Confirm password is required",
+      "passwordMatch": "Passwords must match"
     }
   },
   "dashboard": {

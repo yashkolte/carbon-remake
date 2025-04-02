@@ -81,7 +81,7 @@ const ProductDetails: FC<ProductDetailsProps> = ({ productId }) => {
   if (error || !product) {
     return (
       <div className={styles.error}>
-        <h2>{error || t('products.error')}</h2>
+        <h2>{error ?? t('products.error')}</h2>
         <Button
           kind="tertiary"
           renderIcon={ArrowLeft}
@@ -111,14 +111,24 @@ const ProductDetails: FC<ProductDetailsProps> = ({ productId }) => {
           />
 
           <div className={styles.thumbnailsContainer}>
-            {[product.thumbnail, ...product.images].map((image, index) => (
-              <img
-                key={index}
-                src={image}
-                alt={`${product.title} - Image ${index + 1}`}
-                className={`${styles.thumbnail} ${selectedImage === image ? styles.active : ''}`}
+            {[product.thumbnail, ...product.images].map((image) => (
+              <button
+                key={image} // Use the unique image URL as the key
                 onClick={() => setSelectedImage(image)}
-              />
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    setSelectedImage(image);
+                  }
+                }}
+                className={`${styles.thumbnailButton} ${selectedImage === image ? styles.active : ''}`}
+                aria-label={`${product.title} - Thumbnail`}
+              >
+                <img
+                  src={image}
+                  alt={`${product.title}`} // Simplified alt text
+                  className={styles.thumbnail}
+                />
+              </button>
             ))}
           </div>
         </div>

@@ -1,7 +1,6 @@
 // src/components/ProductCard.tsx
 
 import Link from 'next/link';
-import { FC } from 'react';
 import { Tag } from '@carbon/react';
 import { useTranslation } from 'react-i18next';
 
@@ -22,15 +21,18 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
-  const { t, i18n } = useTranslation('common');
+  const { t } = useTranslation('common');
+
+  // Ensure a fallback href if product.id is invalid
+  const productHref = product.id ? `/product/${product.id}` : '#';
 
   return (
-    <Link href={`/product/${product.id}`} passHref legacyBehavior>
-      <div className="productCard" role="button" tabIndex={0}>
+    <Link href={productHref} passHref legacyBehavior>
+      <a className="productCard">
         <div className="imageContainer">
           <img
             src={product.thumbnail}
-            alt={product.title}
+            alt={product.title} // Use the product title as the alt text
             className="thumbnail"
           />
         </div>
@@ -51,7 +53,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             )}
           </div>
         </div>
-      </div>
+      </a>
     </Link>
   );
 };

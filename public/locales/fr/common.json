@@ -18,21 +18,26 @@
       "es": "Espagnol"
     }
   },
-  "login": {
+  "auth": {
     "signIn": "Se connecter",
-    "email": "Email",
-    "emailPlaceholder": "Entrez votre email",
-    "password": "Mot de passe",
-    "passwordPlaceholder": "Entrez votre mot de passe",
-    "forgotPassword": "Mot de passe oublié?",
-    "dontHaveAccount": "Vous n'avez pas de compte?",
     "createAccount": "Créer un compte",
-    "signingIn": "Connexion en cours...",
+    "email": "Email",
+    "password": "Mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "login": "Connexion",
+    "register": "S'inscrire",
+    "noAccount": "Pas de compte ? Inscrivez-vous ici",
+    "haveAccount": "Déjà un compte ? Connectez-vous ici",
     "validation": {
-      "invalidEmail": "Adresse email invalide",
       "emailRequired": "L'email est requis",
+      "emailInvalid": "Adresse email invalide",
       "passwordRequired": "Le mot de passe est requis",
-      "passwordMinLength": "Le mot de passe doit contenir au moins 8 caractères"
+      "passwordMin": "Le mot de passe doit contenir au moins 8 caractères",
+      "passwordLowercase": "Doit contenir au moins une lettre minuscule",
+      "passwordUppercase": "Doit contenir au moins une lettre majuscule",
+      "passwordNumber": "Doit contenir au moins un chiffre",
+      "confirmRequired": "La confirmation du mot de passe est requise",
+      "passwordMatch": "Les mots de passe doivent correspondre"
     }
   },
   "dashboard": {

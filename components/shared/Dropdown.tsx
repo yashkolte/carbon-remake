@@ -63,7 +63,7 @@ const Dropdown: React.FC<DropdownProps> = ({
   // Use internal state if available, otherwise use prop (ensures consistent value type)
   const normalizedSelectedItem = internalSelected;
 
-  const customStyles = width ? { width: typeof width === 'number' ? `${width}px` : width } : {};
+ width ? { width: typeof width === 'number' ? `${width}px` : width } : {};
 
   const handleChange = ({ selectedItem: newSelectedItem }: { selectedItem: DropdownOption | null }) => {
     const item = newSelectedItem as DropdownOption;

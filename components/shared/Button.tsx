@@ -37,9 +37,9 @@ const CustomButton = (props: ButtonProps) => {
             onClick={onClick}
         >
             {isSubmitting ? (
-                <>
+            
                     <InlineLoading description={loadingText} />
-                </>
+                
             ) : (
                 children
             )}

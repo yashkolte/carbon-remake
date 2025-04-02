@@ -7,7 +7,6 @@ import styles from './Document.module.scss'
 import { Column, FlexGrid, Row, Stack, Tile } from '@carbon/react';
 import Dropdown from '@/components/shared/Dropdown';
 import Table from '@/components/shared/Table';
-import { Value } from 'sass';
 
 const page = () => {
     const [inputValue1, setInputValue1] = useState('');

@@ -11,7 +11,7 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
+export function ThemeProvider({ children }:  { readonly children: React.ReactNode }) {
   // Use a state initialization function to avoid hydration mismatch
   const [theme, setTheme] = useState<Theme>(() => {
     // Default to light theme during SSR

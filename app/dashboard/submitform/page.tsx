@@ -34,7 +34,7 @@ const FormComponent = () => {
     onSubmit: (values) => {
       console.log('Form Submitted:', values);
       dispatch(updateForm(values)); 
-      router.push('/Dashboard');
+      router.push('/dashboard');
     },
   });
 

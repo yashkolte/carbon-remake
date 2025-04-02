@@ -17,6 +17,7 @@
 @use './dashboard/document/Document.scss' as *;
 @use '../components/shared/Dropdown.scss' as *;
 
+
 /* Default theme (light) */
 :root,
 html[data-theme="light"] {
@@ -68,9 +69,6 @@ a {
   text-decoration: none;
 }
 
-/* Carbon component overrides based on theme */
-html[data-theme="dark"] {
-  color-scheme: dark;
   
   /* Header styles */
   .cds--header {
@@ -102,7 +100,7 @@ html[data-theme="dark"] {
     color: var(--foreground);
     border-color: var(--border-color);
   }
-}
+
 
 html[data-theme="light"] {
   /* Header styles */
